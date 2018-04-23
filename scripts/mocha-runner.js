@@ -12,7 +12,7 @@ const options = {
 
 let mocha = new Mocha({...options})
 
-glob.sync('src/**/*spec.ts').forEach((file) => {
+glob.sync('src/**/*spec.tsx').forEach((file) => {
   mocha.addFile(file)
 })
 
