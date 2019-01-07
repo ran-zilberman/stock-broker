@@ -32,10 +32,12 @@
     "declaration": true
   },
   "include": [
-    "./src/typings/**/*.d.ts",
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
     "./test/**/*.ts",
     "./test/**/*.tsx"
+  ],
+  "exclude": ["node_modules", "dist"],
+  "files": [
+    "./src/client/index.tsx",
+    "./src/types.d.ts",
   ]
 }

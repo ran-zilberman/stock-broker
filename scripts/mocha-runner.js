@@ -1,7 +1,16 @@
 'use strict';
 
 require('ts-node/register');
-require('ignore-styles');
+
+const hook = require('css-modules-require-hook')
+const sass = require('node-sass')
+
+hook({
+  extensions: [ '.scss', '.css' ],
+  generateScopedName: '[name]',
+  preprocessCss: (data, file) => sass.renderSync({ file }).css
+})
+
 const path = require('path');
 const Mocha = require('mocha');
 const glob = require('glob');
