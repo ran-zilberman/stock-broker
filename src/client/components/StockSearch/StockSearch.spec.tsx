@@ -5,9 +5,8 @@ import {StockSearch} from './StockSearch';
 
 describe('StockSearch', () => {
 
-  it('should write hello world', () => {
-    let wrapper:ReactWrapper = mount(<StockSearch />);
-    console.log(wrapper.debug());
-    expect(wrapper.find('.stocksearch-container')).to.have.lengthOf(1)
+  it('should render', () => {
+    const wrapper:ReactWrapper = mount(<StockSearch />);
+    expect(wrapper.find('.stocksearchContainer')).to.have.lengthOf(1)
   });
 });

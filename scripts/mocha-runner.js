@@ -2,14 +2,8 @@
 
 require('ts-node/register');
 
-const hook = require('css-modules-require-hook')
-const sass = require('node-sass')
-
-hook({
-  extensions: [ '.scss', '.css' ],
-  generateScopedName: '[name]',
-  preprocessCss: (data, file) => sass.renderSync({ file }).css
-})
+const mockCssModules = require("mock-css-modules");
+mockCssModules.register(['.sass', '.scss']);
 
 const path = require('path');
 const Mocha = require('mocha');

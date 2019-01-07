@@ -4,8 +4,7 @@ import { StockSearch } from "../StockSearch";
 
 export class App extends React.Component<{}> {
   render() {
-    return (<div>
-      <h1 className={s.header}>Hello World</h1>
+    return (<div className={s.appContainer}>
       <StockSearch></StockSearch>
     </div>);
   }

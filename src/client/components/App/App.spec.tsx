@@ -6,7 +6,7 @@ import {App} from './App';
 describe('App', () => {
 
   it('should write hello world', () => {
-    let comp:ReactWrapper = mount(<App />);
-    expect(comp).to.exist;
+    const wrapper:ReactWrapper = mount(<App />);
+    expect(wrapper.find('.stocksearchContainer')).to.have.lengthOf(1)
   });
 });
