@@ -3,7 +3,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "allowJs": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "importHelpers": true,
     "skipLibCheck": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -29,7 +29,7 @@
       "chai"
     ],
     "experimentalDecorators": true,
-    "declaration": true
+    "declaration": false
   },
   "include": [
     "./test/**/*.ts",

@@ -6,6 +6,7 @@ var APP_DIR = path.resolve(__dirname, './src/client');
 
 const config = {
   mode: "production",
+  devtool: 'eval-source-map',
    entry: {
      main: APP_DIR + '/index.tsx'
    },
@@ -33,6 +34,7 @@ const config = {
      },
      {
        test: /\.(jsx|js)?$/,
+       exclude: /(node_modules|bower_components)/,
        use: [{
          loader: "babel-loader",
          options: {

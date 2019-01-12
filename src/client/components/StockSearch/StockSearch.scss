@@ -1,3 +1,14 @@
-.stocksearchContainer {
-    color: red;
+.stocksearch {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-width: 600px;
+}
+
+.queryField {
+    width: 300px;
+}
+
+.spacer {
+    padding-right: 50px;
 }
