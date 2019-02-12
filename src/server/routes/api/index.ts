@@ -1,12 +1,10 @@
 import {Router} from 'express';
+import {quanto} from './quanto';
 
-export default function() {
+export function apiRoutes() {
     const router = Router();
     
-    router.get('/quanto', function (req, res) {
-        const b = req;
-        res.send('Birds home page');
-    });
+    router.get('/quanto', quanto);
 
     return router;
 }

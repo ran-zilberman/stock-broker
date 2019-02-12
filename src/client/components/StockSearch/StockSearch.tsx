@@ -78,7 +78,7 @@ export class StockSearch extends React.Component<{}> {
 
   render() {
     const { startDate, endDate } = this.state;
-    return (<div data-hook="stock-search" className={s.stocksearch}>
+    return <div data-hook="stock-search" className={s.stocksearch}>
               <TextField
                     label="Symbol"
                     onKeyDown={this.handleChange(FormFields.STOCK_SYMBOL)} 
@@ -99,6 +99,6 @@ export class StockSearch extends React.Component<{}> {
                           onChange={this.handleChange(FormFields.END_DATE)}
                           onClose={this.onBlur(FormFields.END_DATE)}
                           animateYearScrolling />
-    </div>);
+    </div>;
   }
 }
