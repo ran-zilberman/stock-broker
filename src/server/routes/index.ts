@@ -3,13 +3,12 @@ import {apiRoutes} from './api'
 
 export default function() {
     const router = Router();
-    
-    router.get('/blah', function (req, res) {
-        const b = req;
-        res.send('Birds home page');
-    });
 
     router.use('/api', apiRoutes());
+
+    router.use(function(error, req, res, next) {
+        res.json({ message: error.message });
+    });
 
     return router;
 }

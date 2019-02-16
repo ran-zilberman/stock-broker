@@ -1,8 +1,12 @@
+import { StocksDataClientFactory } from '../../../core/external-api/stocks-data';
+
 export interface QuantoResponse {
     value: string;
 }
 
-export const quanto = (req, res) => {
-    const response: QuantoResponse =  {value: 'quanto'};
-    res.json(response);
+export async function quanto(req, res) {
+    const stocksDataClient = StocksDataClientFactory.getInstance();
+    const apiResponse = await stocksDataClient.fetchRSI('MSFT');
+    console.log(apiResponse);
+    res.send(apiResponse);
 }
