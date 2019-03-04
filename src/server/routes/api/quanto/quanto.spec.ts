@@ -12,11 +12,11 @@ describe('quanto', async ()=> {
     before(env.start);
     after(env.stop);
 
-    it('should return a response', async ()=> {
-        return env.axiosInstance.get('/api/quanto/')
-        .then(function (response: AxiosResponse<QuantoResponse>) {
-            const data = response.data;
-            expect(data.value).to.equal('quanto');
-        });
-    });
+    // it('should return a response', async ()=> {
+    //     return env.axiosInstance.get('/api/quanto/')
+    //     .then(function (response: AxiosResponse<QuantoResponse>) {
+    //         const data = response.data;
+    //         expect(data.value).to.equal('quanto');
+    //     });
+    // });
 })

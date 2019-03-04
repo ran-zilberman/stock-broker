@@ -1,4 +1,4 @@
-import {makeDriverFactory} from '../../../../test/test-utils';
+import {makeDriverFactory} from '../../../../test/component-test-utils';
 
 export const stockSearchDriverFactory = makeDriverFactory(component => {
     return {

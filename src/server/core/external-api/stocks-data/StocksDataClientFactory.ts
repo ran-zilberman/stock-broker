@@ -1,5 +1,5 @@
 import { AlphaVantageClient } from './AlphaVantageClient';
-import { StocksDataClient } from '../../types/stocks-data';
+import { StocksDataClient } from '../../domain/stocks-data';
 
 export class StocksDataClientFactory {
 

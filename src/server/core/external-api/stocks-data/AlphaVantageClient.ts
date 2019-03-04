@@ -1,4 +1,5 @@
-import { StocksDataClient, StockQuoteDailyData, StockRSIDailyData } from '../../types/stocks-data';
+import { MACDDailyData, MACDData } from './../../domain/stocks-data';
+import { StocksDataClient, StockQuoteDailyData, RSIData } from '../../domain/stocks-data';
 import axios, { AxiosResponse } from 'axios';
 
 export class AlphaVantageClient implements StocksDataClient {
@@ -10,9 +11,14 @@ export class AlphaVantageClient implements StocksDataClient {
         return convertDailyQuotesToDomain(reponse.data);
     }
 
-    async fetchRSI(symbol: string): Promise<{[k: string]: number}> {
+    async fetchRSI(symbol: string): Promise<RSIData> {
         const reponse = await axios.get(`${this.baseUrl}&symbol=${symbol}&function=RSI&interval=daily&time_period=14&series_type=close`);
         return convertDailyRSIToDomain(reponse.data);
+    }
+
+    async fetchMACD(symbol: string): Promise<MACDData> {
+        const reponse = await axios.get(`${this.baseUrl}&symbol=${symbol}&function=MACD&interval=daily&series_type=close`);
+        return convertDailyMACDToDomain(reponse.data);
     }
 
 }
@@ -29,11 +35,25 @@ function convertDailyQuotesToDomain(data): {[k: string]: StockQuoteDailyData} {
         return result;
     }, {});
 }
-//
-function convertDailyRSIToDomain(data): {[k: string]: number} {
+
+function convertDailyRSIToDomain(data): RSIData {
     const dailyData = data['Technical Analysis: RSI'];
     return Object.keys(dailyData).reduce((result, key) => {
         result[key]=  dailyData[key]['RSI'];
+        return result;    
+    }, {});
+
+}
+
+function convertDailyMACDToDomain(data): MACDData {
+    const dailyData = data['Technical Analysis: MACD'];
+    return Object.keys(dailyData).reduce((result, key) => {
+        const macdDailyData: MACDDailyData = {
+            histogram: dailyData[key]['MACD_Hist'],
+            macd: dailyData[key]['MACD'],
+            macdSignal: dailyData[key]['MACD_Signal']
+        }
+        result[key] = macdDailyData;
         return result;    
     }, {});
 

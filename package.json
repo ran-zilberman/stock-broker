@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/ts-node -- ./index.js",
+    "start": "node -r ts-node/register -- ./index.js --debug-brk",
     "build": "webpack",
     "test": "node scripts/mocha-runner.js --inspect-brk"
   },
@@ -63,7 +63,7 @@
     "date-fns": "^2.0.0-alpha.25",
     "express": "^4.16.3",
     "material-ui-pickers": "^2.0.5",
-    "moment": "^2.23.0",
+    "moment": "^2.24.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   }
