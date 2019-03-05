@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { RSI } from './RSI';
-import * as moment from 'moment';
 import { RSISignalProps } from '../../domain/manifest-data';
 
 describe('RSI', () => {

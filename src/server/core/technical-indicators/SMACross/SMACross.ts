@@ -3,13 +3,13 @@ import { Indicator } from "../Indicator";
 import { getFullDate, incrementDay } from '../../utils/date-utils';
 import { RSISignalProps } from '../../domain/manifest-data';
 
-export class RSI extends Indicator {
+export class SMACross extends Indicator {
 
     constructor(private startDate: Date, 
-                private data: TimeSeries<number>, 
-                private signalProps: RSISignalProps = new RSISignalProps()) {
+                private longPeriodMA: TimeSeries<number>, 
+                private shortPeriodMA: TimeSeries<number>) {
         super();
-        const generatorFunc = function*(signalProps, rsiData, startDate) {
+        const generatorFunc = function*(longPeriodMA, shortPeriodMA, startDate) {
             let isIn = false;
             let datePointer = startDate;
 
@@ -17,9 +17,10 @@ export class RSI extends Indicator {
                 const key = getFullDate(datePointer);
                 datePointer = incrementDay(datePointer);
                 
-                if (rsiData[key]) {
-                    const dailyRsi = rsiData[key];
-                    isIn = isIn ? dailyRsi > signalProps.sell : dailyRsi > signalProps.buy;
+                if (longPeriodMA[key] && shortPeriodMA[key]) {
+                    const dailyLongMA = longPeriodMA[key];
+                    const dailyshortMA = shortPeriodMA[key];
+                    isIn = isIn ? dailyshortMA < dailyLongMA : dailyshortMA > dailyLongMA;
                     yield {isIn, date: key};
                 } else {
                     continue;
@@ -27,6 +28,6 @@ export class RSI extends Indicator {
             }
         }
 
-        this.tickGenerator = generatorFunc(this.signalProps, this.data, this.startDate);        
+        this.tickGenerator = generatorFunc(this.longPeriodMA, this.shortPeriodMA, this.startDate);        
     }
 }
